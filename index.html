@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hari Krishnan — Senior Software Engineer</title>
+<meta name="description" content="Hari Krishnan, Senior Software Engineer specializing in Java, Spring Boot, microservices and distributed systems.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0e0c0a;
+    --bg-raised: #171310;
+    --surface: #1d1812;
+    --surface-2: #241d15;
+    --border: #362c1f;
+    --border-soft: #2a2219;
+    --text: #eae2d2;
+    --text-dim: #a89c87;
+    --text-faint: #6f6455;
+    --accent: #e0a458;
+    --accent-bright: #f0c080;
+    --accent-dim: #8a6234;
+    --accent-soft: rgba(224, 164, 88, 0.1);
+    --green: #7fae6a;
+    --red: #c0665a;
+    --yellow: #d4b256;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --radius: 3px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(224,164,88,0.07), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 20%, rgba(224,164,88,0.04), transparent 55%);
+    color: var(--text);
+    font-family: var(--serif);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a { color: inherit; }
+
+  ::selection { background: var(--accent); color: #1a1410; }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .mono { font-family: var(--mono); }
+
+  .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  /* ---------- HERO / TERMINAL WINDOW ---------- */
+
+  .hero-outer {
+    padding: 64px 28px 40px;
+  }
+
+  .terminal {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--bg-raised);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6);
+    overflow: hidden;
+  }
+
+  .term-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 16px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .term-dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .term-dot.r { background: #5c4237; }
+  .term-dot.y { background: #6b5a34; }
+  .term-dot.g { background: #3f5636; }
+
+  .term-title {
+    flex: 1;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text-faint);
+    margin-right: 60px;
+  }
+
+  .term-body {
+    padding: 34px 32px 38px;
+    font-family: var(--mono);
+  }
+
+  .term-line {
+    display: flex;
+    gap: 10px;
+    color: var(--text-dim);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+
+  .prompt-sym { color: var(--green); flex-shrink: 0; }
+
+  .term-out {
+    margin: 18px 0 0;
+  }
+
+  .term-name {
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 700;
+    color: var(--text);
+    margin: 0 0 6px;
+    letter-spacing: -0.01em;
+  }
+
+  .term-role {
+    font-size: 15px;
+    color: var(--accent);
+    margin: 0 0 22px;
+    font-weight: 500;
+  }
+
+  .term-tagline {
+    font-family: var(--serif);
+    font-size: 17px;
+    color: var(--text-dim);
+    max-width: 56ch;
+    margin: 0 0 26px;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 1.1em;
+    background: var(--accent);
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+    margin-left: 2px;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .btn {
+    font-family: var(--mono);
+    font-size: 13px;
+    text-decoration: none;
+    padding: 9px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+  }
+  .btn:hover { border-color: var(--accent-dim); color: var(--text); background: var(--accent-soft); }
+  .btn.primary {
+    color: #1a1410;
+    background: var(--accent);
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  .btn.primary:hover { background: var(--accent-bright); border-color: var(--accent-bright); }
+  .btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ---------- TAB BAR NAV ---------- */
+
+  .tabbar {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(14, 12, 10, 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-soft);
+  }
+
+  .tabbar-inner {
+    max-width: 860px;
+    margin: 0 auto;
+    display: flex;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .tabbar-inner::-webkit-scrollbar { display: none; }
+
+  .tab {
+    font-family: var(--mono);
+    font-size: 13px;
+    white-space: nowrap;
+    color: var(--text-faint);
+    text-decoration: none;
+    padding: 13px 20px;
+    border-bottom: 2px solid transparent;
+    border-right: 1px solid var(--border-soft);
+    transition: color 0.15s ease;
+  }
+  .tab:hover { color: var(--text-dim); }
+  .tab.active { color: var(--accent-bright); border-bottom-color: var(--accent); background: var(--accent-soft); }
+
+  /* ---------- SECTIONS ---------- */
+
+  main { padding-bottom: 40px; }
+
+  .pane {
+    padding: 56px 28px 8px;
+    border-bottom: 1px solid var(--border-soft);
+    scroll-margin-top: 48px;
+  }
+
+  .cmd {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--text-faint);
+    margin: 0 0 22px;
+    display: flex;
+    gap: 10px;
+  }
+  .cmd .prompt-sym { color: var(--green); }
+  .cmd .cmd-text { color: var(--text-dim); }
+
+  .pane-body { max-width: 860px; margin: 0 auto; }
+
+  /* About */
+  .about-text {
+    font-family: var(--serif);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--text-dim);
+    max-width: 66ch;
+  }
+  .about-text strong { color: var(--text); font-weight: 600; }
+
+  .stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    margin-top: 34px;
+    padding-top: 30px;
+    border-top: 1px solid var(--border-soft);
+  }
+  .stat {
+    font-family: var(--mono);
+  }
+  .stat-num { font-size: 22px; color: var(--accent); font-weight: 700; }
+  .stat-label { font-size: 12.5px; color: var(--text-faint); margin-top: 2px; }
+
+  /* Skills */
+  .skill-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    border: 1px solid var(--border-soft);
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 40px;
+  }
+  .skill-group {
+    padding: 22px 24px;
+    border-right: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
+  }
+  .skill-group:nth-child(2n) { border-right: none; }
+
+  .skill-path {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: var(--text-faint);
+    margin: 0 0 14px;
+  }
+  .skill-path .slash { color: var(--accent-dim); }
+
+  .tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .tag {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-dim);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 4px 9px;
+    border-radius: 4px;
+    line-height: 1.4;
+  }
+
+  /* Projects */
+  .project-grid {
+    display: grid;
+    gap: 18px;
+    margin-bottom: 40px;
+  }
+
+  .project {
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: var(--bg-raised);
+    overflow: hidden;
+    transition: border-color 0.15s ease;
+  }
+  .project:hover { border-color: var(--accent-dim); }
+
+  .project-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 13px 18px;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border-soft);
+    font-family: var(--mono);
+    font-size: 13px;
+  }
+  .project-file { color: var(--accent); }
+  .project-num { color: var(--text-faint); font-size: 12px; }
+
+  .project-body { padding: 20px 22px 22px; }
+
+  .project-desc {
+    font-family: var(--serif);
+    font-size: 15.5px;
+    color: var(--text-dim);
+    margin: 0 0 16px;
+    max-width: 68ch;
+  }
+
+  .stack-line {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-faint);
+    margin-bottom: 8px;
+  }
+  .stack-line .kw { color: var(--green); }
+
+  /* Contact */
+  .contact-body { padding-bottom: 20px; }
+  .contact-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 26px;
+  }
+
+  footer {
+    padding: 34px 28px 50px;
+    text-align: center;
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 620px) {
+    .hero-outer { padding: 32px 16px 24px; }
+    .term-body { padding: 24px 20px 28px; }
+    .term-title { margin-right: 0; }
+    .pane { padding: 40px 16px 8px; }
+    .skill-groups { grid-template-columns: 1fr; }
+    .skill-group { border-right: none; }
+    .stat-row { gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero-outer">
+  <div class="terminal">
+    <div class="term-bar">
+      <span class="term-dot r"></span>
+      <span class="term-dot y"></span>
+      <span class="term-dot g"></span>
+      <span class="term-title">hari@krishnan — zsh</span>
+    </div>
+    <div class="term-body">
+      <div class="term-line"><span class="prompt-sym">$</span><span>whoami</span></div>
+      <div class="term-out">
+        <p class="term-name">Hari Krishnan</p>
+        <p class="term-role">Senior Software Engineer</p>
+        <p class="term-tagline" id="tagline"></p>
+        <div class="hero-actions">
+          <a class="btn primary" href="resume.pdf" download>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+            download resume.pdf
+          </a>
+          <a class="btn" href="https://github.com/wiztechari" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.71 1.03 1.62 1.03 2.74 0 3.92-2.34 4.78-4.57 5.04.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+            github/wiztechari
+          </a>
+          <a class="btn" href="mailto:harikrishna.wiztech@gmail.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+            say hello
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nav class="tabbar">
+  <div class="tabbar-inner" id="tabbar">
+    <a class="tab" data-target="about" href="#about">about.md</a>
+    <a class="tab" data-target="skills" href="#skills">skills.json</a>
+    <a class="tab" data-target="projects" href="#projects">projects/</a>
+    <a class="tab" data-target="contact" href="#contact">contact.sh</a>
+  </div>
+</nav>
+
+<main>
+
+  <section id="about" class="pane">
+    <div class="pane-body">
+      <p class="cmd"><span class="prompt-sym">$</span><span class="cmd-text">cat about.md</span></p>
+      <p class="about-text">
+        I'm a <strong>backend-focused software engineer</strong> who builds services meant to stay up:
+        microservices that talk to each other cleanly, APIs that hold their shape under load, and data
+        layers that don't fall over at 2am. Most of my time lives in the <strong>Java and Spring Boot</strong>
+        world — designing systems, then getting into the weeds of concurrency, caching, and query plans
+        when it actually matters.
+      </p>
+      <p class="about-text" style="margin-top:16px;">
+        I care about <strong>clean, testable code</strong> as much as I care about the architecture diagram —
+        one without the other doesn't survive production. Comfortable owning a service from design through
+        deployment: containers, Kubernetes, CI pipelines, and the observability to know when something's wrong
+        before a customer tells you.
+      </p>
+      <div class="stat-row">
+        <div class="stat"><div class="stat-num">10+</div><div class="stat-label">skill domains</div></div>
+        <div class="stat"><div class="stat-num">Java 8→21</div><div class="stat-label">language range</div></div>
+        <div class="stat"><div class="stat-num">4</div><div class="stat-label">featured projects</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="pane">
+    <div class="pane-body">
+      <p class="cmd"><span class="prompt-sym">$</span><span class="cmd-text">find skills/ -maxdepth 1 -type d</span></p>
+
+      <div class="skill-groups">
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>core-java</p>
+          <div class="tag-list">
+            <span class="tag">Java 8/11/17/21</span><span class="tag">OOP</span><span class="tag">Collections</span>
+            <span class="tag">Exception Handling</span><span class="tag">Multithreading</span><span class="tag">Concurrency</span>
+            <span class="tag">Streams &amp; Lambdas</span><span class="tag">Generics</span><span class="tag">JVM Internals</span>
+            <span class="tag">Memory Mgmt</span><span class="tag">Design Patterns</span><span class="tag">SOLID</span>
+            <span class="tag">Clean Code</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>backend</p>
+          <div class="tag-list">
+            <span class="tag">Spring Framework</span><span class="tag">Spring Boot</span><span class="tag">Spring MVC</span>
+            <span class="tag">Spring Data JPA</span><span class="tag">Spring Security</span><span class="tag">Spring Cloud</span>
+            <span class="tag">REST</span><span class="tag">Microservices</span><span class="tag">API Development</span>
+            <span class="tag">API Gateway</span><span class="tag">Service Discovery</span><span class="tag">Distributed Systems</span>
+            <span class="tag">Event-Driven Arch.</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>database</p>
+          <div class="tag-list">
+            <span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">Oracle</span><span class="tag">MySQL</span>
+            <span class="tag">MongoDB</span><span class="tag">Cassandra</span><span class="tag">DB Design</span>
+            <span class="tag">Query Optimization</span><span class="tag">Indexing</span><span class="tag">Stored Procedures</span>
+            <span class="tag">JPA / Hibernate</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>messaging-caching</p>
+          <div class="tag-list">
+            <span class="tag">Apache Kafka</span><span class="tag">RabbitMQ</span><span class="tag">Redis</span>
+            <span class="tag">Caching Strategies</span><span class="tag">Pub/Sub</span><span class="tag">Async Processing</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>cloud-devops</p>
+          <div class="tag-list">
+            <span class="tag">Microsoft Azure</span><span class="tag">AKS</span><span class="tag">Kubernetes</span><span class="tag">Docker</span>
+            <span class="tag">CI/CD</span><span class="tag">Jenkins</span><span class="tag">GitHub Actions</span><span class="tag">Maven</span>
+            <span class="tag">Gradle</span><span class="tag">Git</span><span class="tag">Linux</span><span class="tag">Nginx</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>testing</p>
+          <div class="tag-list">
+            <span class="tag">JUnit 5</span><span class="tag">Mockito</span><span class="tag">Integration Testing</span>
+            <span class="tag">Unit Testing</span><span class="tag">TDD</span><span class="tag">REST API Testing</span><span class="tag">Postman</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>security</p>
+          <div class="tag-list">
+            <span class="tag">Spring Security</span><span class="tag">OAuth 2.0</span><span class="tag">JWT</span>
+            <span class="tag">RBAC</span><span class="tag">API Security</span><span class="tag">OWASP</span><span class="tag">Secure Coding</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>api-integration</p>
+          <div class="tag-list">
+            <span class="tag">REST APIs</span><span class="tag">JSON</span><span class="tag">XML</span><span class="tag">Swagger / OpenAPI</span>
+            <span class="tag">WebSockets</span><span class="tag">STOMP</span><span class="tag">HTTP/HTTPS</span><span class="tag">3rd-Party APIs</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>architecture</p>
+          <div class="tag-list">
+            <span class="tag">Microservices</span><span class="tag">Distributed Systems</span><span class="tag">System Design</span>
+            <span class="tag">LLD</span><span class="tag">HLD</span><span class="tag">Scalability</span><span class="tag">Performance Tuning</span>
+            <span class="tag">Fault Tolerance</span><span class="tag">Logging &amp; Monitoring</span><span class="tag">Observability</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <p class="skill-path"><span class="slash">~/skills/</span>tools</p>
+          <div class="tag-list">
+            <span class="tag">IntelliJ IDEA</span><span class="tag">Eclipse</span><span class="tag">Git</span>
+            <span class="tag">GitHub / GitLab / Bitbucket</span><span class="tag">Maven</span><span class="tag">Gradle</span>
+            <span class="tag">Jira</span><span class="tag">SonarQube</span><span class="tag">Postman</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="pane">
+    <div class="pane-body">
+      <p class="cmd"><span class="prompt-sym">$</span><span class="cmd-text">ls -la projects/</span></p>
+
+      <div class="project-grid">
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">enterprise-microservices-platform.md</span>
+            <span class="project-num">01</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A scalable microservices backend with service-to-service communication, centralized
+              configuration, security, caching, and fault-tolerance mechanisms built in.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Microservices, REST, Kafka, Redis, PostgreSQL, Docker, Kubernetes, Azure</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">realtime-chat-platform.md</span>
+            <span class="project-num">02</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A real-time messaging application supporting private and group conversations, delivery
+              guarantees, and user presence, with WebSocket/STOMP communication over a Spring Boot backend
+              tuned for high-volume traffic.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, WebSocket, STOMP, PostgreSQL, Redis, REST APIs, Docker</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">customer-account-management.md</span>
+            <span class="project-num">03</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A secure enterprise backend for managing customer profiles, accounts, products, and
+              transactions through RESTful APIs, with authentication, authorization, validation, and
+              external service integration.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Spring Security, JPA/Hibernate, Oracle, REST, JWT, Maven, JUnit, Mockito</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">cloud-native-data-processing.md</span>
+            <span class="project-num">04</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              Cloud-native services for processing and transforming large data volumes asynchronously,
+              deployed on Kubernetes/Azure with event-driven processing and automated CI/CD pipelines.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Kafka, Azure, Kubernetes, Docker, PostgreSQL, CI/CD, Git</p>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="pane">
+    <div class="pane-body contact-body">
+      <p class="cmd"><span class="prompt-sym">$</span><span class="cmd-text">./contact.sh --open-to work</span></p>
+      <p class="about-text" style="font-size:16px;">
+        Open to backend and platform engineering roles — happy to talk architecture, Java internals,
+        or why your microservice keeps timing out.
+      </p>
+      <div class="contact-links">
+        <a class="btn primary" href="mailto:harikrishna.wiztech@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16v12H4z"/><path d="M4 7l8 6 8-6"/></svg>
+          harikrishna.wiztech@gmail.com
+        </a>
+        <a class="btn" href="https://github.com/wiztechari" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.38 6.84 9.74.5.1.68-.22.68-.49 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.37-3.37-1.37-.45-1.18-1.11-1.5-1.11-1.5-.9-.64.07-.62.07-.62 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.05 0-1.12.39-2.03 1.03-2.74-.1-.26-.45-1.31.1-2.73 0 0 .84-.28 2.75 1.05a9.4 9.4 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.42.2 2.47.1 2.73.64.71 1.03 1.62 1.03 2.74 0 3.92-2.34 4.78-4.57 5.04.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .27.18.6.69.49A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2z"/></svg>
+          github.com/wiztechari
+        </a>
+        <a class="btn" href="resume.pdf" download>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 19h16"/></svg>
+          resume.pdf
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>// built by Hari Krishnan · rendered on GitHub Pages</p>
+</footer>
+
+<script>
+  // Typewriter for hero tagline — single orchestrated moment, skipped for reduced motion.
+  const taglineEl = document.getElementById('tagline');
+  const fullText = "Java & Spring Boot engineer building resilient microservices, APIs, and cloud-native backend systems.";
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  if (prefersReduced) {
+    taglineEl.textContent = fullText;
+  } else {
+    let i = 0;
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    function type() {
+      if (i <= fullText.length) {
+        taglineEl.textContent = fullText.slice(0, i);
+        taglineEl.appendChild(cursor);
+        i++;
+        setTimeout(type, 14);
+      }
+    }
+    type();
+  }
+
+  // Active tab highlighting via IntersectionObserver
+  const tabs = document.querySelectorAll('.tab');
+  const sections = document.querySelectorAll('.pane');
+  const tabMap = new Map();
+  tabs.forEach(t => tabMap.set(t.dataset.target, t));
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const tab = tabMap.get(entry.target.id);
+      if (!tab) return;
+      if (entry.isIntersecting) {
+        tabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
