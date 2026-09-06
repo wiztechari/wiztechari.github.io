@@ -668,10 +668,6 @@
   <p>// built by Hari Krishnan · rendered on GitHub Pages</p>
 </footer>
 
-<audio id="bg-audio" loop preload="auto">
-  <source src="theme-music.mp3" type="audio/mpeg">
-</audio>
-
 <script>
   // Typewriter for hero tagline — single orchestrated moment, skipped for reduced motion.
   const taglineEl = document.getElementById('tagline');
@@ -748,26 +744,6 @@
     }
 
     setInterval(draw, 45);
-  })();
-
-  // Background music — plays automatically, no visible control.
-  // Swap the file at theme-music.mp3 (same name) to change the track later; no code edit needed.
-  (function bgMusic() {
-    const audio = document.getElementById('bg-audio');
-    if (!audio) return;
-    audio.volume = 0.35;
-
-    let started = false;
-    function tryStart() {
-      if (started) return;
-      audio.play().then(() => { started = true; }).catch(() => { /* wait for interaction */ });
-    }
-
-    // Most browsers allow this immediately; if blocked, the first click/keypress/touch starts it.
-    tryStart();
-    ['click', 'keydown', 'touchstart', 'scroll'].forEach(evt => {
-      window.addEventListener(evt, tryStart, { once: true, passive: true });
-    });
   })();
 </script>
 
