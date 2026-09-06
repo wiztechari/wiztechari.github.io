@@ -8,27 +8,27 @@
 <link rel="icon" href="data:,">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #000000;
-    --bg-raised: #050a05;
-    --surface: #081208;
-    --surface-2: #0b170b;
-    --border: #164523;
-    --border-soft: #0f2e18;
-    --text: #d3ffdc;
-    --text-dim: #6fcf87;
-    --text-faint: #2f6b40;
-    --accent: #00ff41;
-    --accent-bright: #7dffa8;
-    --accent-dim: #00a82e;
-    --accent-soft: rgba(0, 255, 65, 0.1);
-    --green: #00ff41;
+    --bg: #0e0c0a;
+    --bg-raised: #171310;
+    --surface: #1d1812;
+    --surface-2: #241d15;
+    --border: #362c1f;
+    --border-soft: #2a2219;
+    --text: #eae2d2;
+    --text-dim: #a89c87;
+    --text-faint: #6f6455;
+    --accent: #e0a458;
+    --accent-bright: #f0c080;
+    --accent-dim: #8a6234;
+    --accent-soft: rgba(224, 164, 88, 0.1);
+    --green: #7fae6a;
     --red: #c0665a;
     --yellow: #d4b256;
     --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
-    --serif: 'JetBrains Mono', ui-monospace, 'SF Mono', Consolas, monospace;
+    --serif: 'Source Serif 4', Georgia, serif;
     --radius: 3px;
   }
 
@@ -43,27 +43,19 @@
   body {
     margin: 0;
     background: var(--bg);
+    background-image:
+      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(224,164,88,0.07), transparent 60%),
+      radial-gradient(ellipse 700px 500px at 100% 20%, rgba(224,164,88,0.04), transparent 55%);
     color: var(--text);
     font-family: var(--serif);
     font-size: 16px;
-    line-height: 1.7;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    position: relative;
-  }
-
-  #matrix-rain {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    pointer-events: none;
-    display: block;
   }
 
   a { color: inherit; }
 
-  ::selection { background: var(--accent); color: #001a08; }
+  ::selection { background: var(--accent); color: #1a1410; }
 
   :focus-visible {
     outline: 2px solid var(--accent);
@@ -241,7 +233,6 @@
     padding: 56px 28px 8px;
     border-bottom: 1px solid var(--border-soft);
     scroll-margin-top: 48px;
-    background: rgba(0, 0, 0, 0.78);
   }
 
   .cmd {
@@ -385,7 +376,6 @@
     font-family: var(--mono);
     font-size: 12px;
     color: var(--text-faint);
-    background: rgba(0, 0, 0, 0.78);
   }
 
   @media (max-width: 620px) {
@@ -401,15 +391,13 @@
 </head>
 <body>
 
-<canvas id="matrix-rain" aria-hidden="true"></canvas>
-
 <div class="hero-outer">
   <div class="terminal">
     <div class="term-bar">
       <span class="term-dot r"></span>
       <span class="term-dot y"></span>
       <span class="term-dot g"></span>
-      <span class="term-title">hari@krishnan — the_matrix.sh</span>
+      <span class="term-title">hari@krishnan — zsh</span>
     </div>
     <div class="term-body">
       <div class="term-line"><span class="prompt-sym">$</span><span>whoami</span></div>
@@ -709,42 +697,6 @@
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
   sections.forEach(s => observer.observe(s));
-
-  // Matrix digital rain — ambient background, paused for reduced-motion users.
-  (function matrixRain() {
-    const canvas = document.getElementById('matrix-rain');
-    if (!canvas || prefersReduced) return;
-    const ctx = canvas.getContext('2d');
-    const glyphs = 'アカサタナハマヤラワ0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ:.="*+-<>';
-    const fontSize = 15;
-    let columns, drops, w, h;
-
-    function resize() {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-      columns = Math.floor(w / fontSize);
-      drops = new Array(columns).fill(0).map(() => Math.floor(Math.random() * -40));
-    }
-    resize();
-    window.addEventListener('resize', resize);
-
-    function draw() {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-      ctx.fillRect(0, 0, w, h);
-      ctx.font = fontSize + 'px monospace';
-      for (let i = 0; i < columns; i++) {
-        const char = glyphs[Math.floor(Math.random() * glyphs.length)];
-        const x = i * fontSize;
-        const y = drops[i] * fontSize;
-        ctx.fillStyle = Math.random() < 0.03 ? '#dfffe8' : 'rgba(0, 255, 65, 0.55)';
-        ctx.fillText(char, x, y);
-        if (y > h && Math.random() > 0.975) drops[i] = 0;
-        drops[i]++;
-      }
-    }
-
-    setInterval(draw, 45);
-  })();
 </script>
 
 </body>
