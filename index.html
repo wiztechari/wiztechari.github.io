@@ -397,6 +397,33 @@
     .skill-group { border-right: none; }
     .stat-row { gap: 20px; }
   }
+
+  .term-name-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mute-btn {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+.mute-btn:hover { border-color: var(--accent-dim); color: var(--text); background: var(--accent-soft); }
+.mute-btn.is-muted { color: var(--text-faint); border-color: var(--border-soft); }
+.mute-btn svg { width: 16px; height: 16px; }
+.mute-btn .icon-off { display: none; }
+.mute-btn.is-muted .icon-on { display: none; }
+.mute-btn.is-muted .icon-off { display: block; }
 </style>
 </head>
 <body>
@@ -414,7 +441,21 @@
     <div class="term-body">
       <div class="term-line"><span class="prompt-sym">$</span><span>whoami</span></div>
       <div class="term-out">
-        <p class="term-name">Hari Krishnan</p>
+        <div class="term-name-row">
+          <p class="term-name">Hari Krishnan</p>
+          <button id="mute-toggle" class="mute-btn" type="button" aria-pressed="false" aria-label="Mute background music" title="Mute background music">
+            <svg class="icon icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="4,9 8,9 12,5 12,19 8,15 4,15"></polygon>
+              <path d="M16 8a5 5 0 0 1 0 8"></path>
+              <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
+            </svg>
+            <svg class="icon icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="4,9 8,9 12,5 12,19 8,15 4,15"></polygon>
+              <line x1="16" y1="9" x2="22" y2="15"></line>
+              <line x1="22" y1="9" x2="16" y2="15"></line>
+            </svg>
+          </button>
+        </div>
         <p class="term-role">Senior Software Engineer</p>
         <p class="term-tagline" id="tagline"></p>
         <div class="hero-actions">
@@ -859,6 +900,27 @@
       window.addEventListener(evt, tryStart, { once: true, passive: true });
     });
   })();
+
+  // Mute audio toggle
+  (function muteToggle() {
+  const audio = document.getElementById('bg-audio');
+  const btn = document.getElementById('mute-toggle');
+  if (!audio || !btn) return;
+
+  function render() {
+    btn.classList.toggle('is-muted', audio.muted);
+    btn.setAttribute('aria-pressed', String(audio.muted));
+    btn.setAttribute('aria-label', audio.muted ? 'Unmute background music' : 'Mute background music');
+    btn.title = audio.muted ? 'Unmute background music' : 'Mute background music';
+  }
+
+  btn.addEventListener('click', () => {
+    audio.muted = !audio.muted;
+    render();
+  });
+
+  render();
+})();
 </script>
 
 </body>
