@@ -136,41 +136,13 @@
     margin: 18px 0 0;
   }
 
-  .term-name-row {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0 0 6px;
-  }
-
   .term-name {
     font-size: clamp(28px, 5vw, 42px);
     font-weight: 700;
     color: var(--text);
-    margin: 0;
+    margin: 0 0 6px;
     letter-spacing: -0.01em;
   }
-
-  .mute-btn {
-    flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid var(--border);
-    border-radius: 50%;
-    background: transparent;
-    color: var(--text-dim);
-    cursor: pointer;
-    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
-  }
-  .mute-btn:hover { border-color: var(--accent-dim); color: var(--text); background: var(--accent-soft); }
-  .mute-btn.is-muted { color: var(--text-faint); border-color: var(--border-soft); }
-  .mute-btn svg { width: 16px; height: 16px; }
-  .mute-btn .icon-off { display: none; }
-  .mute-btn.is-muted .icon-on { display: none; }
-  .mute-btn.is-muted .icon-off { display: block; }
 
   .term-role {
     font-size: 15px;
@@ -442,21 +414,7 @@
     <div class="term-body">
       <div class="term-line"><span class="prompt-sym">$</span><span>whoami</span></div>
       <div class="term-out">
-        <div class="term-name-row">
-          <p class="term-name">Hari Krishnan</p>
-          <button id="mute-toggle" class="mute-btn" type="button" aria-pressed="false" aria-label="Mute background music" title="Mute background music">
-            <svg class="icon icon-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="4,9 8,9 12,5 12,19 8,15 4,15"></polygon>
-              <path d="M16 8a5 5 0 0 1 0 8"></path>
-              <path d="M18.5 5.5a9 9 0 0 1 0 13"></path>
-            </svg>
-            <svg class="icon icon-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="4,9 8,9 12,5 12,19 8,15 4,15"></polygon>
-              <line x1="16" y1="9" x2="22" y2="15"></line>
-              <line x1="22" y1="9" x2="16" y2="15"></line>
-            </svg>
-          </button>
-        </div>
+        <p class="term-name">Hari Krishnan</p>
         <p class="term-role">Senior Software Engineer</p>
         <p class="term-tagline" id="tagline"></p>
         <div class="hero-actions">
@@ -617,65 +575,155 @@
       <p class="cmd"><span class="prompt-sym">$</span><span class="cmd-text">ls -la projects/</span></p>
 
       <div class="project-grid">
-
         <article class="project">
           <div class="project-head">
-            <span class="project-file">enterprise-microservices-platform.md</span>
+            <span class="project-file">distributed-task-scheduler.md</span>
             <span class="project-num">01</span>
           </div>
           <div class="project-body">
             <p class="project-desc">
-              A scalable microservices backend with service-to-service communication, centralized
-              configuration, security, caching, and fault-tolerance mechanisms built in.
+              A fault-tolerant, distributed job scheduling system that queues, distributes, and executes background
+              tasks across multiple worker nodes, with leader election, idempotent retries with exponential backoff,
+              and a live dashboard for monitoring job throughput and failure rates.
             </p>
-            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Microservices, REST, Kafka, Redis, PostgreSQL, Docker, Kubernetes, Azure</p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Apache Kafka, ZooKeeper, ExecutorService, CompletableFuture, REST APIs</p>
           </div>
         </article>
 
         <article class="project">
           <div class="project-head">
-            <span class="project-file">realtime-chat-platform.md</span>
+            <span class="project-file">ledgercore-accounting-engine.md</span>
             <span class="project-num">02</span>
           </div>
           <div class="project-body">
             <p class="project-desc">
-              A real-time messaging application supporting private and group conversations, delivery
-              guarantees, and user presence, with WebSocket/STOMP communication over a Spring Boot backend
-              tuned for high-volume traffic.
+              A backend financial ledger service enforcing strict double-entry bookkeeping and multi-currency
+              transaction support, with a transactional REST API, JWT-based authentication, optimistic locking for
+              ACID compliance, and a full audit-log module for tracing every state change.
             </p>
-            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, WebSocket, STOMP, PostgreSQL, Redis, REST APIs, Docker</p>
+            <p class="stack-line"><span class="kw">stack:</span> Java 17, Spring Boot, PostgreSQL, JWT, Spring Security, JPA/Hibernate, Domain-Driven Design</p>
           </div>
         </article>
 
         <article class="project">
           <div class="project-head">
-            <span class="project-file">customer-account-management.md</span>
+            <span class="project-file">streamsight-log-analytics.md</span>
             <span class="project-num">03</span>
           </div>
           <div class="project-body">
             <p class="project-desc">
-              A secure enterprise backend for managing customer profiles, accounts, products, and
-              transactions through RESTful APIs, with authentication, authorization, validation, and
-              external service integration.
+              An end-to-end log ingestion and analytics pipeline that parses, enriches, and aggregates application
+              logs in near real time, using custom streaming topologies for windowed aggregations and a Kibana
+              dashboard for live visualization, fully containerized for local and CI deployment.
             </p>
-            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Spring Security, JPA/Hibernate, Oracle, REST, JWT, Maven, JUnit, Mockito</p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Apache Kafka Streams, Elasticsearch, Kibana, Docker, Logstash</p>
           </div>
         </article>
 
         <article class="project">
           <div class="project-head">
-            <span class="project-file">cloud-native-data-processing.md</span>
+            <span class="project-file">quickcart-microservices-backend.md</span>
             <span class="project-num">04</span>
           </div>
           <div class="project-body">
             <p class="project-desc">
-              Cloud-native services for processing and transforming large data volumes asynchronously,
-              deployed on Kubernetes/Azure with event-driven processing and automated CI/CD pipelines.
+              A modular e-commerce backend decomposed into independent microservices for catalog, cart, orders, and
+              payments, communicating via REST and asynchronous events, with API gateway routing, service discovery,
+              and centralized configuration across the cluster.
             </p>
-            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Kafka, Azure, Kubernetes, Docker, PostgreSQL, CI/CD, Git</p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Spring Cloud Gateway, Eureka, RabbitMQ, Docker, Kubernetes</p>
           </div>
         </article>
 
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">vaultkey-secrets-manager.md</span>
+            <span class="project-num">05</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A self-hosted secrets management service that securely stores, encrypts, and rotates sensitive
+              credentials such as API keys and database passwords, using envelope encryption and fine-grained
+              access policies exposed through scoped OAuth2 tokens.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, HashiCorp Vault, AES-256, OAuth2, REST APIs</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">graphnexus-social-graph-engine.md</span>
+            <span class="project-num">06</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A backend service modeling social-network relationships such as followers and mutual connections,
+              exposed through a flexible GraphQL API, with custom graph traversal algorithms for friend
+              recommendations and shortest-path connection discovery, cached for low-latency repeated queries.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Neo4j, GraphQL, Redis, Spring Boot, Cypher</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">reactivechat-messaging-platform.md</span>
+            <span class="project-num">07</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A scalable real-time chat application supporting one-on-one and group messaging with delivery and
+              read receipts, built on a fully non-blocking, backpressure-aware reactive stack and broadcasting
+              messages across server instances for horizontal scaling.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring WebFlux, Project Reactor, WebSocket, Redis Pub/Sub</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">schemaguard-contract-testing-tool.md</span>
+            <span class="project-num">08</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A CLI and CI-integrated tool that validates REST API implementations against their OpenAPI
+              specifications, catching contract-breaking changes before deployment by auto-generating test cases
+              and producing detailed reports for continuous integration pipelines.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, OpenAPI/Swagger, JUnit, Jenkins, GitHub Actions</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">pixelforge-image-processing-library.md</span>
+            <span class="project-num">09</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A high-performance library for batch image transformations including resizing, filtering, and format
+              conversion, parallelizing work across CPU cores with a fluent builder API and benchmarks comparing
+              single-threaded versus parallel throughput.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Fork/Join Framework, Java Image I/O, JMH Benchmarking</p>
+          </div>
+        </article>
+
+        <article class="project">
+          <div class="project-head">
+            <span class="project-file">infrapulse-cluster-health-monitor.md</span>
+            <span class="project-num">10</span>
+          </div>
+          <div class="project-body">
+            <p class="project-desc">
+              A monitoring microservice that polls the Kubernetes API to track pod health, resource utilization,
+              and deployment rollout status, exposing metrics for dashboards and firing configurable alerts on
+              crash loops and resource threshold breaches.
+            </p>
+            <p class="stack-line"><span class="kw">stack:</span> Java, Spring Boot, Kubernetes API, Prometheus, Grafana, Slack Webhooks</p>
+          </div>
+        </article>
       </div>
     </div>
   </section>
@@ -707,7 +755,7 @@
 </main>
 
 <footer>
-  <p>// built by Hari Krishnan · rendered on GitHub Pages</p>
+  <p>// built by Hari Krishnan · Copyright © 2026</p>
 </footer>
 
 <audio id="bg-audio" loop preload="auto">
@@ -807,30 +855,9 @@
 
     // Most browsers allow this immediately; if blocked, the first click/keypress/touch starts it.
     tryStart();
-    ['click', 'keydown', 'touchstart'].forEach(evt => {
+    ['click', 'keydown', 'touchstart', 'scroll'].forEach(evt => {
       window.addEventListener(evt, tryStart, { once: true, passive: true });
     });
-  })();
-
-  // Mute toggle next to the name — independent of the autoplay logic above.
-  (function muteToggle() {
-    const audio = document.getElementById('bg-audio');
-    const btn = document.getElementById('mute-toggle');
-    if (!audio || !btn) return;
-
-    function render() {
-      btn.classList.toggle('is-muted', audio.muted);
-      btn.setAttribute('aria-pressed', String(audio.muted));
-      btn.setAttribute('aria-label', audio.muted ? 'Unmute background music' : 'Mute background music');
-      btn.title = audio.muted ? 'Unmute background music' : 'Mute background music';
-    }
-
-    btn.addEventListener('click', () => {
-      audio.muted = !audio.muted;
-      render();
-    });
-
-    render();
   })();
 </script>
 
